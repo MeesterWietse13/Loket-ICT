@@ -22,64 +22,64 @@ export default function Sidebar({ activeTab, setActiveTab, userRole, userName, l
   const acronym = userName.split(' ').map(n => n[0]).join('').toUpperCase().substring(0, 2);
 
   return (
-    <div className="w-64 bg-[#1E293B] text-slate-300 h-screen flex flex-col fixed left-0 top-0 border-r border-[#111827] z-20">
-      <div className="p-6 border-b border-slate-700">
-        <h1 className="text-xl font-bold tracking-tight text-blue-400 flex items-center gap-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-900/40">
-            <span className="text-white font-black text-xs">ICT</span>
+    <div className="w-64 bg-[#EAF1F4] text-[#0F172A] h-screen flex flex-col fixed left-0 top-0 border-r border-[#CFDCE2] z-20">
+      <div className="p-6 border-b border-[#CFDCE2]">
+        <h1 className="text-xl font-bold tracking-tight text-[#0F172A] flex items-center gap-3">
+          <div className="w-10 h-10 bg-[#385B69] rounded-xl flex items-center justify-center shadow-sm shrink-0">
+            <span className="text-white font-bold text-sm">ICT</span>
           </div>
-          Scholenbeheer
+          Loket ICT
         </h1>
-        <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Beheer Dashboard</p>
+        <p className="text-xs text-[#487184] font-medium leading-relaxed pr-2 mt-3">Overzicht en opvolging voor de scholen.</p>
       </div>
 
-      <div className="px-4 pt-6 pb-2">
-        <div className="bg-slate-800/50 rounded-xl p-3 border border-slate-700">
-           <p className="text-[10px] font-bold text-slate-500 uppercase mb-2 px-1">Wissel Modus</p>
+      <div className="px-5 pt-6 pb-2">
+        <div className="bg-[#F4EFE6] rounded-2xl p-4 border border-[#EAE1D2]">
+           <p className="text-xs font-medium text-[#96723D] mb-3">Snelle toegang</p>
            <button 
             onClick={() => setActiveTab('teacher-view')}
-            className="w-full flex items-center justify-center gap-2 py-2 bg-indigo-600/20 text-indigo-400 rounded-lg text-xs font-bold border border-indigo-600/30 hover:bg-indigo-600/30 transition-all group"
+            className="w-full flex items-center justify-center gap-2 py-3 bg-[#FDFBF7] text-[#0F172A] rounded-xl text-sm font-medium border border-[#EAE1D2] hover:bg-[#FDFBF7] transition-all group shadow-sm"
            >
-             <ArrowLeftRight size={14} className="group-hover:rotate-180 transition-transform duration-500" />
+             <ArrowLeftRight size={16} className="group-hover:rotate-180 transition-transform duration-500 text-[#96723D]" />
              Naar Portaal
            </button>
         </div>
       </div>
 
-      <nav className="flex-1 py-4">
+      <nav className="flex-1 px-4 py-4 space-y-1">
         {menuItems.map((item) => (
           <button
             key={item.id}
             onClick={() => setActiveTab(item.id)}
-            className={`w-full flex items-center gap-3 px-6 py-3 transition-all duration-200 group relative ${
+            className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-xl transition-all duration-200 group relative ${
               activeTab === item.id
-                ? 'bg-blue-600 text-white border-r-4 border-white'
-                : 'hover:bg-slate-800/50 hover:text-white'
+                ? 'bg-[#FDFBF7] text-[#0F172A] shadow-sm border border-[#CFDCE2]'
+                : 'text-[#487184] hover:bg-[#FDFBF7]/40 hover:text-[#0F172A]'
             }`}
           >
-            <item.icon className={`h-5 w-5 ${activeTab === item.id ? 'text-white' : 'text-slate-400 group-hover:text-white'}`} />
-            <span className="font-semibold text-sm">{item.label}</span>
+            <item.icon className={`h-5 w-5 ${activeTab === item.id ? 'text-[#385B69]' : 'text-[#487184] group-hover:text-[#385B69]'}`} strokeWidth={activeTab === item.id ? 2.5 : 2} />
+            <span className="font-medium text-sm">{item.label}</span>
           </button>
         ))}
       </nav>
 
-      <div className="p-4 bg-[#111827]">
+      <div className="p-4 bg-[#CFDCE2]/30 border-t border-[#CFDCE2]">
         <div className="flex items-center space-x-3">
-          <div className="w-9 h-9 rounded-full bg-blue-500 flex items-center justify-center font-bold text-white text-sm shadow-inner overflow-hidden">
+          <div className="w-10 h-10 rounded-xl bg-[#FDFBF7] border border-[#CFDCE2] flex items-center justify-center font-bold text-[#385B69] text-sm overflow-hidden shadow-sm">
             {acronym}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-xs font-bold text-white truncate">{userName}</p>
-            <p className="text-[10px] text-slate-400 truncate uppercase tracking-tighter">
-              {userRole === 'admin' ? 'ICT Coördinator' : 'School Beheer'}
+            <p className="text-sm font-medium text-[#0F172A] truncate">{userName}</p>
+            <p className="text-xs text-[#487184] font-medium truncate">
+               {userRole === 'admin' ? 'ICT Coördinator' : 'School Beheer'}
             </p>
           </div>
           <button 
             onClick={logout}
-            className="p-1.5 hover:bg-slate-800 rounded-lg text-slate-500 hover:text-red-400 transition-colors group"
+            className="p-2 hover:bg-[#FDFBF7]/60 rounded-xl text-[#487184] hover:text-[#9A5B64] transition-colors group"
             title="Uitloggen"
           >
-            <LogOut size={16} className="group-hover:scale-110 transition-transform" />
+            <LogOut size={18} className="group-hover:scale-110 transition-transform" />
           </button>
         </div>
       </div>

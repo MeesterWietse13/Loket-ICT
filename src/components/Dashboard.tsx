@@ -81,52 +81,52 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
   };
 
   const priorityColors = {
-    dringend: 'bg-rose-100 text-rose-700 border-rose-200',
-    normaal: 'bg-amber-100 text-amber-700 border-amber-200',
-    laag: 'bg-emerald-100 text-emerald-700 border-emerald-200',
+    dringend: 'bg-[#F2E8E9] text-[#9A5B64] border-[#E6D1D4]',
+    normaal: 'bg-[#F4EFE6] text-[#96723D] border-[#EAE1D2]',
+    laag: 'bg-[#EDF2EF] text-[#557560] border-[#D4E0D8]',
   };
 
   const getAPIChannel = (school: string) => {
-    if (school === 'Matadi' || school === 'Klaverblad') return { name: 'Smartschool API', icon: <MessageSquare size={12} className="text-orange-500" /> };
-    return { name: 'Gmail API', icon: <Mail size={12} className="text-blue-500" /> };
+    if (school === 'Matadi' || school === 'Klaverblad') return { name: 'Smartschool API', icon: <MessageSquare size={12} className="text-[#96723D]" /> };
+    return { name: 'Gmail API', icon: <Mail size={12} className="text-[#487184]" /> };
   };
 
   return (
-    <div className="space-y-10 pb-20 selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="space-y-8 pb-20 selection:bg-[#CFDCE2] selection:text-[#2A4652]">
       {/* Header & Stats */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white -mx-8 -mt-8 px-10 py-8 border-b border-slate-100 shadow-[0_1px_3px_rgba(0,0,0,0.02)] mb-10">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-[#FDFBF7] -mx-8 -mt-8 px-10 py-8 border-b border-[#EAE1D2] mb-8">
         <div className="space-y-1">
           <div className="flex items-center gap-3">
-             <div className="w-12 h-12 bg-indigo-600 text-white rounded-2xl flex items-center justify-center shadow-xl shadow-indigo-600/20">
+             <div className="w-12 h-12 bg-[#385B69] text-white rounded-xl flex items-center justify-center shadow-sm">
                 <LayoutDashboardIcon size={24} />
              </div>
              <div>
-                <h2 className="text-2xl font-black text-slate-900 tracking-tight">ICT Dashboard</h2>
-                <div className="flex gap-2 mt-1">
-                  <span className="px-2 py-0.5 rounded-lg text-[10px] font-black bg-rose-50 text-rose-600 border border-rose-100 uppercase tracking-widest">
+                <h2 className="text-2xl font-bold text-[#0F172A] tracking-tight">ICT-dashboard</h2>
+                <div className="flex gap-2 mt-1.5">
+                  <span className="px-2.5 py-0.5 rounded-md text-xs font-medium bg-[#F2E8E9] text-[#9A5B64] border border-[#E6D1D4]">
                     {requests.filter(r => r.prioriteit === 'dringend').length} Dringend
                   </span>
-                  <span className="px-2 py-0.5 rounded-lg text-[10px] font-black bg-indigo-50 text-indigo-600 border border-indigo-100 uppercase tracking-widest">
+                  <span className="px-2.5 py-0.5 rounded-md text-xs font-medium bg-[#EAF1F4] text-[#487184] border border-[#CFDCE2]">
                     {requests.filter(r => r.status === 'nieuw').length} Nieuw
                   </span>
                 </div>
              </div>
           </div>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <div className="hidden lg:flex flex-col items-end mr-4">
-             <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Systeemstatus</span>
-             <span className="text-xs font-bold text-emerald-600 flex items-center gap-1.5">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+             <span className="text-xs font-medium text-stone-500">Systeemstatus</span>
+             <span className="text-sm font-medium text-[#557560] flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-full bg-[#557560] animate-pulse" />
                 Alle API's online
              </span>
           </div>
           <button 
             onClick={() => setIsAddingRequest(true)}
-            className="group px-6 py-3 bg-slate-900 hover:bg-black text-white rounded-2xl flex items-center gap-2.5 transition-all shadow-xl shadow-slate-900/10 active:scale-95 text-sm font-black uppercase tracking-widest"
+            className="group px-5 py-2.5 bg-[#385B69] hover:bg-[#2A4652] text-white rounded-xl flex items-center gap-2 transition-all shadow-sm active:scale-95 text-sm font-medium"
           >
             <Plus size={18} className="transition-transform group-hover:rotate-90" />
-            <span>Melding Toevoegen</span>
+            <span>Melding toevoegen</span>
           </button>
         </div>
       </div>
@@ -134,42 +134,41 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {[
-          { label: 'Totaal open', value: stats.totaal, icon: LayoutDashboardIcon, theme: 'indigo' },
-          { label: 'Nieuwe meldingen', value: stats.nieuw, icon: AlertTriangle, theme: 'blue' },
-          { label: 'Wacht op planning', value: stats.ongepland, icon: Clock, theme: 'amber' },
-          { label: 'Bezoeken vandaag', value: stats.vandaag, icon: MapPin, theme: 'emerald' },
+          { label: 'Totaal open', value: stats.totaal, icon: LayoutDashboardIcon, bg: 'bg-[#EDF2EF]', border: 'border-[#D4E0D8]', text: 'text-[#557560]', valueText: 'text-[#0F172A]', iconBg: 'bg-[#FDFBF7]/50 text-[#557560] border-0' },
+          { label: 'Nieuwe meldingen', value: stats.nieuw, icon: AlertTriangle, bg: 'bg-[#EAF1F4]', border: 'border-[#CFDCE2]', text: 'text-[#487184]', valueText: 'text-[#0F172A]', iconBg: 'bg-[#FDFBF7] text-[#487184] border border-[#CFDCE2]' },
+          { label: 'Wacht op planning', value: stats.ongepland, icon: Clock, bg: 'bg-[#F4EFE6]', border: 'border-[#EAE1D2]', text: 'text-[#96723D]', valueText: 'text-[#0F172A]', iconBg: 'bg-[#FDFBF7]/50 text-[#96723D] border-0' },
+          { label: 'Bezoeken vandaag', value: stats.vandaag, icon: MapPin, bg: 'bg-[#EDF2EF]', border: 'border-[#D4E0D8]', text: 'text-[#557560]', valueText: 'text-[#0F172A]', iconBg: 'bg-[#FDFBF7]/50 text-[#557560] border-0' },
         ].map((stat, i) => (
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
             key={i} 
-            className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm shadow-slate-200/50 flex flex-col justify-between hover:shadow-md transition-shadow group relative overflow-hidden"
+            className={`${stat.bg} p-6 rounded-2xl border ${stat.border} flex flex-col justify-between transition-colors group relative overflow-hidden`}
           >
-            <div className={`absolute top-0 right-0 w-24 h-24 bg-${stat.theme}-600 opacity-5 -mr-10 -mt-10 rounded-full group-hover:scale-110 transition-transform`} />
-            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-${stat.theme}-50 text-${stat.theme}-600 group-hover:scale-110 transition-transform mb-4 shadow-sm`}>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 shadow-sm ${stat.iconBg}`}>
               <stat.icon size={24} />
             </div>
             <div>
-              <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-1">{stat.label}</p>
-              <p className="text-3xl font-black text-slate-900 tracking-tight">{stat.value}</p>
+              <p className={`text-sm font-medium ${stat.text} mb-1`}>{stat.label}</p>
+              <p className={`text-3xl font-bold ${stat.valueText}`}>{stat.value}</p>
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Filters Section */}
-      <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-slate-100 space-y-8">
+      <div className="bg-[#FDFBF7] p-6 rounded-2xl shadow-sm border border-[#EAE1D2] space-y-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
            <div className="space-y-1">
-             <h3 className="text-xl font-black text-slate-900 tracking-tight uppercase">Filters & Weergave</h3>
-             <p className="text-slate-400 text-sm font-medium">Personaliseer je dashboard overzicht.</p>
+             <h3 className="text-lg font-medium text-stone-800">Filters & weergave</h3>
+             <p className="text-stone-500 text-sm">Personaliseer je dashboard overzicht.</p>
            </div>
            {/* School Selection Tabs as Pill Group */}
-           <div className="flex items-center gap-1.5 p-1.5 bg-slate-50 rounded-2xl border border-slate-100 overflow-x-auto no-scrollbar scroll-smooth">
+           <div className="flex items-center gap-2 p-1.5 bg-[#F4EFE6]/50 rounded-xl border border-[#EAE1D2] overflow-x-auto no-scrollbar scroll-smooth">
             <button 
               onClick={() => setFilterSchool('Alle scholen')}
-              className={`px-5 py-2 text-[10px] font-black uppercase tracking-widest transition-all rounded-xl whitespace-nowrap ${filterSchool === 'Alle scholen' ? 'bg-white shadow-sm text-indigo-600' : 'text-slate-400 hover:text-slate-600'}`}
+              className={`px-4 py-2 text-xs font-medium transition-all rounded-lg whitespace-nowrap ${filterSchool === 'Alle scholen' ? 'bg-[#FDFBF7] shadow-sm text-[#2A4652] border border-[#EAE1D2]' : 'text-stone-500 hover:text-stone-700'}`}
             >
               Alle overkoepelend
             </button>
@@ -180,7 +179,7 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                 <button 
                   key={school}
                   onClick={() => setFilterSchool(school)}
-                  className={`px-5 py-2 text-[10px] font-black uppercase tracking-widest transition-all rounded-xl whitespace-nowrap ${isActive ? `${theme.bg} text-white shadow-lg ${theme.border}` : 'text-slate-400 hover:text-slate-600'}`}
+                  className={`px-4 py-2 text-xs font-medium transition-all rounded-lg whitespace-nowrap ${isActive ? `${theme.bg} ${theme.text} shadow-sm border ${theme.border}` : 'text-stone-500 hover:text-stone-700'}`}
                 >
                   {school}
                 </button>
@@ -189,13 +188,13 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-6 border-t border-slate-50">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-6 border-t border-[#EAE1D2]">
           <div className="relative group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" size={18} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 group-focus-within:text-[#385B69] transition-colors" size={18} />
             <input 
               type="text" 
               placeholder="Zoek op naam of omschrijving..." 
-              className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-50 outline-none transition-all text-sm font-bold placeholder:text-slate-300 focus:border-indigo-200"
+              className="w-full pl-11 pr-4 py-3 bg-[#F4EFE6] border border-[#EAE1D2] rounded-xl focus:ring-2 focus:ring-[#CFDCE2] focus:border-[#487184] outline-none transition-all text-sm placeholder:text-[#8BA3AC]"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -203,9 +202,9 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
           
           <div className="flex gap-4">
             <div className="flex-1 relative">
-              <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" size={16} />
+              <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400 pointer-events-none" size={16} />
               <select 
-                className="w-full pl-11 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-4 focus:ring-indigo-50 outline-none transition-all text-[10px] font-black uppercase tracking-widest appearance-none cursor-pointer"
+                className="w-full pl-11 pr-4 py-3 bg-[#F4EFE6] border border-[#EAE1D2] rounded-xl focus:ring-2 focus:ring-[#CFDCE2] focus:border-[#487184] outline-none transition-all text-sm appearance-none cursor-pointer text-stone-700"
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
               >
@@ -218,20 +217,20 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
             
             <button 
               onClick={() => setSortField(sortField === 'datum' ? 'prioriteit' : 'datum')}
-              className="flex items-center justify-center gap-2 px-6 py-4 bg-slate-50 border border-slate-200 rounded-2xl text-[10px] font-black text-slate-500 uppercase tracking-widest hover:bg-slate-100 transition-all active:scale-95 whitespace-nowrap"
+              className="flex items-center justify-center gap-2 px-6 py-3 bg-[#F4EFE6] border border-[#EAE1D2] rounded-xl text-sm font-medium text-stone-600 hover:bg-stone-100 transition-all active:scale-95 whitespace-nowrap"
             >
-              <ArrowUpDown size={14} />
+              <ArrowUpDown size={16} />
               {sortField === 'datum' ? 'Datum' : 'Prioriteit'}
             </button>
           </div>
 
-          <div className="flex items-center gap-4 bg-indigo-50 px-6 py-4 rounded-[1.5rem] border border-indigo-100">
-             <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-sm text-indigo-600 shrink-0">
+          <div className="flex items-center gap-4 bg-[#EAF1F4]/50 px-5 py-3 rounded-xl border border-[#CFDCE2]">
+             <div className="w-10 h-10 bg-[#FDFBF7] rounded-lg flex items-center justify-center shadow-sm text-[#385B69] shrink-0 border border-[#EAF1F4]">
                 <Info size={18} />
              </div>
              <div>
-                <p className="text-[10px] font-black text-indigo-900 tracking-wider">HUIDIGE SELECTIE</p>
-                <p className="text-[11px] font-bold text-indigo-600 uppercase truncate">
+                <p className="text-xs font-medium text-[#2A4652]">Huidige selectie</p>
+                <p className="text-sm font-medium text-[#385B69] truncate">
                   {filterSchool} • {filteredRequests.length} Meldingen
                 </p>
              </div>
@@ -240,19 +239,19 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
       </div>
 
       {/* Requests Table Component */}
-      <div className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-slate-100 overflow-hidden min-h-[400px]">
+      <div className="bg-[#FDFBF7] rounded-2xl shadow-sm border border-[#EAE1D2] overflow-hidden min-h-[400px]">
         <div className="overflow-x-auto">
           <table className="w-full text-left">
             <thead>
-              <tr className="bg-slate-50/50 border-b border-slate-100 uppercase tracking-widest text-[10px] font-black text-slate-400">
-                <th className="px-8 py-5">Datum / School</th>
-                <th className="px-8 py-5">Aanvrager / Melding</th>
-                <th className="px-8 py-5 text-center">Prioriteit</th>
-                <th className="px-8 py-5">Status & Locatie</th>
-                <th className="px-8 py-5 text-right">Beheer</th>
+              <tr className="bg-[#F4EFE6]/50 border-b border-[#EAE1D2] text-xs font-semibold text-stone-500">
+                <th className="px-8 py-4">Datum / School</th>
+                <th className="px-8 py-4">Aanvrager / Melding</th>
+                <th className="px-8 py-4 text-center">Prioriteit</th>
+                <th className="px-8 py-4">Status & Locatie</th>
+                <th className="px-8 py-4 text-right">Beheer</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-50">
+            <tbody className="divide-y divide-stone-100">
               <AnimatePresence mode="popLayout">
                 {filteredRequests.map((request) => {
                   const schoolTheme = SCHOOL_COLORS[request.school] || SCHOOL_COLORS['default'];
@@ -263,53 +262,53 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                       key={request.id} 
-                      className="hover:bg-slate-50/50 transition-all group"
+                      className="hover:bg-[#F4EFE6]/50 transition-colors group"
                     >
-                      <td className="px-8 py-6">
+                      <td className="px-8 py-5">
                         <div className="flex flex-col gap-1">
-                          <span className="text-sm font-black text-slate-900 tracking-tight">{request.datum}</span>
-                          <span className={`text-[10px] font-black uppercase tracking-[0.1em] ${schoolTheme.accent}`}>{request.school}</span>
+                          <span className="text-sm font-medium text-stone-900">{request.datum}</span>
+                          <span className={`text-xs font-medium ${schoolTheme.accent}`}>{request.school}</span>
                         </div>
                       </td>
-                      <td className="px-8 py-6">
+                      <td className="px-8 py-5">
                         <div className="flex flex-col min-w-0 max-w-[300px]">
-                          <span className="text-sm font-black text-slate-900 truncate">{request.aanvrager}</span>
-                          <p className="text-xs text-slate-400 font-medium truncate">{request.omschrijving}</p>
+                          <span className="text-sm font-medium text-stone-900 truncate">{request.aanvrager}</span>
+                          <p className="text-sm text-stone-500 truncate">{request.omschrijving}</p>
                         </div>
                       </td>
-                      <td className="px-8 py-6">
+                      <td className="px-8 py-5">
                         <div className="flex justify-center">
-                          <span className={`text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-lg border w-fit shadow-sm ${priorityColors[request.prioriteit]}`}>
+                          <span className={`text-xs font-medium px-2.5 py-1 rounded-md border w-fit shadow-sm ${priorityColors[request.prioriteit]}`}>
                             {request.prioriteit}
                           </span>
                         </div>
                       </td>
-                      <td className="px-8 py-6">
+                      <td className="px-8 py-5">
                         {request.status === 'opgelost' ? (
-                          <div className="flex items-center gap-2 text-emerald-600 text-[10px] font-black uppercase tracking-widest italic opacity-60">
-                            <CheckCircle2 size={14} />
+                          <div className="flex items-center gap-2 text-[#557560] text-sm font-medium">
+                            <CheckCircle2 size={16} />
                             Opgelost
                           </div>
                         ) : request.geplandeDatumSite || request.geplandeDatumRemote ? (
-                          <div className="flex flex-col gap-1">
-                            <div className={`flex items-center gap-1.5 w-fit px-2 py-0.5 rounded-lg text-[9px] font-black uppercase tracking-widest ${
-                                request.isRemote ? 'bg-indigo-50 text-indigo-600 border border-indigo-100' : 'bg-emerald-50 text-emerald-600 border border-emerald-100'
+                          <div className="flex flex-col gap-1.5">
+                            <div className={`flex items-center gap-1.5 w-fit px-2.5 py-0.5 rounded-md text-xs font-medium ${
+                                request.isRemote ? 'bg-[#EAF1F4] text-[#487184] border border-[#CFDCE2]' : 'bg-[#EDF2EF] text-[#557560] border border-[#D4E0D8]'
                             }`}>
-                              {request.isRemote ? <Globe size={11} /> : <MapPin size={11} />}
+                              {request.isRemote ? <Globe size={13} /> : <MapPin size={13} />}
                               {request.isRemote ? 'Remote' : 'Aanwezig'}
                             </div>
-                            <span className="text-xs font-black text-slate-700 tracking-tight">{request.geplandeDatumSite || request.geplandeDatumRemote?.split('T')[0]}</span>
+                            <span className="text-sm font-medium text-stone-700">{request.geplandeDatumSite || request.geplandeDatumRemote?.split('T')[0]}</span>
                           </div>
                         ) : (
-                          <div className="flex items-center gap-2 text-slate-300 uppercase italic font-black text-[10px] tracking-widest">
+                          <div className="flex items-center gap-2 text-stone-400 text-sm font-medium">
                              Geen datum
                           </div>
                         )}
                       </td>
-                      <td className="px-8 py-6 text-right">
+                      <td className="px-8 py-5 text-right">
                         <button 
                           onClick={() => setSelectedRequestId(request.id)}
-                          className="px-4 py-2 bg-slate-50 text-slate-900 font-black text-[10px] uppercase tracking-widest rounded-xl hover:bg-slate-900 hover:text-white transition-all shadow-sm active:scale-95"
+                          className="px-4 py-2 bg-stone-100 text-stone-700 font-medium text-xs rounded-lg hover:bg-[#385B69] hover:text-white transition-all shadow-sm active:scale-95"
                         >
                           Details
                         </button>
@@ -322,16 +321,16 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
           </table>
           {filteredRequests.length === 0 && (
             <div className="py-24 text-center">
-               <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner">
-                  <Search className="text-slate-300" size={32} />
+               <div className="w-16 h-16 bg-[#F4EFE6] rounded-2xl flex items-center justify-center mx-auto mb-6 border border-[#EAE1D2]">
+                  <Search className="text-stone-400" size={28} />
                </div>
-               <h3 className="text-xl font-black text-slate-900 tracking-tight mb-2 uppercase">Geen meldingen gevonden</h3>
-               <p className="text-slate-400 text-sm font-medium mb-6">Probeer een andere filter of zoekterm.</p>
+               <h3 className="text-lg font-medium text-stone-900 mb-2">Geen meldingen gevonden</h3>
+               <p className="text-stone-500 text-sm mb-6">Probeer een andere filter of zoekterm.</p>
                <button 
                  onClick={() => { setFilterSchool('Alle scholen'); setFilterStatus('Alle statussen'); setSearchQuery(''); }}
-                 className="px-8 py-4 bg-indigo-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-indigo-700 shadow-xl shadow-indigo-600/20 active:scale-95"
+                 className="px-6 py-2.5 bg-[#385B69] text-white rounded-xl font-medium text-sm hover:bg-[#385B69] active:scale-95 shadow-sm transition-all"
                >
-                 Reset Filters
+                 Reset filters
                </button>
             </div>
           )}
@@ -341,37 +340,37 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
       {/* Add Request Modal */}
       <AnimatePresence>
         {isAddingRequest && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#2A4652]/40 backdrop-blur-sm">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white w-full max-w-2xl rounded-[3rem] shadow-2xl overflow-hidden"
+              className="bg-[#FDFBF7] w-full max-w-2xl rounded-2xl shadow-sm overflow-hidden"
             >
               <div className="p-10">
                 <div className="flex justify-between items-center mb-10">
-                  <h3 className="text-2xl font-black text-slate-900 uppercase">Nieuwe Melding</h3>
-                  <button onClick={() => setIsAddingRequest(false)} className="text-slate-400 hover:text-slate-900 font-black text-xs uppercase tracking-widest px-4 py-2 hover:bg-slate-50 rounded-xl transition-all">Sluiten ✕</button>
+                  <h3 className="text-2xl font-medium text-stone-800">Nieuwe Melding</h3>
+                  <button onClick={() => setIsAddingRequest(false)} className="text-stone-500 hover:text-stone-800 font-medium text-xs px-4 py-2 hover:bg-[#F4EFE6] rounded-xl transition-all">Sluiten ✕</button>
                 </div>
 
                 <form onSubmit={handleAddRequest} className="space-y-6">
                   <div className="grid grid-cols-2 gap-6">
                     <div className="space-y-2">
-                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Naam</label>
+                       <label className="text-xs font-medium text-stone-500 ml-1">Naam</label>
                        <input 
                          required
                          type="text" 
-                         className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm focus:border-indigo-500 transition-colors"
+                         className="w-full p-4 bg-[#F4EFE6] border border-[#EAE1D2] rounded-2xl outline-none font-bold text-sm focus:border-[#385B69] transition-colors"
                          value={newRequestData.aanvrager}
                          onChange={(e) => setNewRequestData({...newRequestData, aanvrager: e.target.value})}
                        />
                     </div>
                     <div className="space-y-2">
-                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">E-mail</label>
+                       <label className="text-xs font-medium text-stone-500 ml-1">E-mail</label>
                        <input 
                          required
                          type="email" 
-                         className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm focus:border-indigo-500 transition-colors"
+                         className="w-full p-4 bg-[#F4EFE6] border border-[#EAE1D2] rounded-2xl outline-none font-bold text-sm focus:border-[#385B69] transition-colors"
                          value={newRequestData.email}
                          onChange={(e) => setNewRequestData({...newRequestData, email: e.target.value})}
                        />
@@ -380,9 +379,9 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
 
                   <div className="grid grid-cols-2 gap-6">
                     <div className="space-y-2">
-                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">School</label>
+                       <label className="text-xs font-medium text-stone-500 ml-1">School</label>
                        <select 
-                         className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm"
+                         className="w-full p-4 bg-[#F4EFE6] border border-[#EAE1D2] rounded-2xl outline-none font-bold text-sm"
                          value={newRequestData.school}
                          onChange={(e) => setNewRequestData({...newRequestData, school: e.target.value})}
                        >
@@ -390,9 +389,9 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                        </select>
                     </div>
                     <div className="space-y-2">
-                       <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Prioriteit</label>
+                       <label className="text-xs font-medium text-stone-500 ml-1">Prioriteit</label>
                        <select 
-                         className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-bold text-sm"
+                         className="w-full p-4 bg-[#F4EFE6] border border-[#EAE1D2] rounded-2xl outline-none font-bold text-sm"
                          value={newRequestData.prioriteit}
                          onChange={(e) => setNewRequestData({...newRequestData, prioriteit: e.target.value as any})}
                        >
@@ -404,17 +403,17 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Omschrijving</label>
+                    <label className="text-xs font-medium text-stone-500 ml-1">Omschrijving</label>
                     <textarea 
                       required
                       rows={6}
-                      className="w-full p-4 bg-slate-50 border border-slate-200 rounded-2xl outline-none font-medium text-sm focus:border-indigo-500 transition-colors"
+                      className="w-full p-4 bg-[#F4EFE6] border border-[#EAE1D2] rounded-2xl outline-none font-medium text-sm focus:border-[#385B69] transition-colors"
                       value={newRequestData.omschrijving}
                       onChange={(e) => setNewRequestData({...newRequestData, omschrijving: e.target.value})}
                     />
                   </div>
 
-                  <button className="w-full py-5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[2rem] font-black text-lg transition-all shadow-xl shadow-indigo-600/20 active:scale-95">TOEVOEGEN</button>
+                  <button className="w-full py-5 bg-[#385B69] hover:bg-[#385B69] text-white rounded-2xl font-medium text-lg transition-all shadow-sm shadow-[#385B69]/20 active:scale-95">TOEVOEGEN</button>
                 </form>
               </div>
             </motion.div>
@@ -425,42 +424,42 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
       {/* Detail Modal */}
       <AnimatePresence>
         {selectedRequest && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-slate-900/40 backdrop-blur-sm">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-[#2A4652]/40 backdrop-blur-sm">
             <motion.div 
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="bg-white w-full max-w-4xl rounded-[3rem] shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+              className="bg-[#FDFBF7] w-full max-w-4xl rounded-2xl shadow-sm overflow-hidden flex flex-col max-h-[90vh]"
             >
-              <div className={`h-2 w-full ${priorityColors[selectedRequest.prioriteit].split(' ')[0]} bg-indigo-600`} />
+              <div className={`h-2 w-full ${priorityColors[selectedRequest.prioriteit].split(' ')[0]} bg-[#385B69]`} />
               
               <div className="p-10 overflow-y-auto no-scrollbar">
                 <div className="flex justify-between items-start mb-10">
                   <div>
                     <div className="flex items-center gap-3 mb-2">
-                      <span className={`px-3 py-1 rounded-lg text-[9px] font-black uppercase tracking-widest bg-indigo-50 text-indigo-600 border border-indigo-100`}>
+                      <span className={`px-3 py-1 rounded-lg text-xs font-medium   bg-[#EAF1F4] text-[#385B69] border border-[#CFDCE2]`}>
                         {selectedRequest.categorie}
                       </span>
-                      <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest">{selectedRequest.datum}</span>
+                      <span className="text-stone-500 text-xs font-medium">{selectedRequest.datum}</span>
                     </div>
-                    <h3 className="text-4xl font-black text-slate-900 tracking-tight uppercase">{selectedRequest.aanvrager}</h3>
+                    <h3 className="text-4xl font-medium text-stone-800">{selectedRequest.aanvrager}</h3>
                   </div>
-                  <button onClick={() => setSelectedRequestId(null)} className="text-slate-400 hover:text-slate-900 font-black text-xs uppercase tracking-widest px-4 py-2 hover:bg-slate-50 rounded-xl transition-all">Sluiten ✕</button>
+                  <button onClick={() => setSelectedRequestId(null)} className="text-stone-500 hover:text-stone-800 font-medium text-xs px-4 py-2 hover:bg-[#F4EFE6] rounded-xl transition-all">Sluiten ✕</button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
                   <div className="md:col-span-2 space-y-10">
-                    <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
-                      <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Omschrijving probleem</h4>
+                    <div className="bg-[#F4EFE6] p-8 rounded-2xl border border-[#EAE1D2]">
+                      <h4 className="text-xs font-medium text-stone-500 mb-4">Omschrijving probleem</h4>
                       <p className="text-slate-700 font-medium text-lg leading-relaxed">{selectedRequest.omschrijving}</p>
                     </div>
 
                     {selectedRequest.beschikbareDagen && selectedRequest.beschikbareDagen.length > 0 && (
-                      <div className="bg-slate-50 p-8 rounded-[2rem] border border-slate-100">
-                        <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Aanwezig op school</h4>
+                      <div className="bg-[#F4EFE6] p-8 rounded-2xl border border-[#EAE1D2]">
+                        <h4 className="text-xs font-medium text-stone-500 mb-4">Aanwezig op school</h4>
                         <div className="flex flex-wrap gap-2">
                           {selectedRequest.beschikbareDagen.map(dag => (
-                            <span key={dag} className="px-3 py-1 rounded-xl text-[10px] font-black bg-white border border-slate-200 text-slate-600 uppercase tracking-widest shadow-sm">
+                            <span key={dag} className="px-3 py-1 rounded-xl text-xs font-medium bg-[#FDFBF7] border border-[#EAE1D2] text-slate-600 shadow-sm">
                               {dag}
                             </span>
                           ))}
@@ -469,10 +468,10 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                     )}
 
                     <div className="space-y-4">
-                      <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Interne Nota (enkel jij ziet dit)</label>
+                      <label className="text-xs font-medium text-stone-500 ml-1">Interne Nota (enkel jij ziet dit)</label>
                       <textarea 
                         rows={6}
-                        className="w-full p-6 bg-slate-900 text-white rounded-[2rem] outline-none font-mono text-xs leading-relaxed shadow-inner"
+                        className="w-full p-6 bg-[#2A4652] text-white rounded-2xl outline-none font-mono text-xs leading-relaxed shadow-inner"
                         placeholder="Voeg aantekeningen toe voor collega's of jezelf..."
                         value={selectedRequest.interneNota || ''}
                         onChange={(e) => updateRequest(selectedRequest.id, { interneNota: e.target.value })}
@@ -482,16 +481,16 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
 
                   <div className="space-y-8">
                      <div className="space-y-4">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Beheer Status</label>
+                        <label className="text-xs font-medium text-stone-500 ml-1">Beheer Status</label>
                         <div className="space-y-2">
                            {['nieuw', 'ingepland', 'opgelost', 'geannuleerd'].map(s => (
                              <button 
                                key={s}
                                onClick={() => updateRequest(selectedRequest.id, { status: s as any })}
-                               className={`w-full p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all border-2 flex items-center justify-between ${
+                               className={`w-full p-4 rounded-2xl text-xs font-medium   transition-all border-2 flex items-center justify-between ${
                                  selectedRequest.status === s 
-                                 ? 'bg-indigo-600 border-indigo-600 text-white shadow-lg' 
-                                 : 'bg-white border-slate-100 text-slate-600 hover:border-indigo-200'
+                                 ? 'bg-[#385B69] border-[#385B69] text-white shadow-sm' 
+                                 : 'bg-[#FDFBF7] border-[#EAE1D2] text-slate-600 hover:border-[#CFDCE2]'
                                }`}
                              >
                                {s}
@@ -501,16 +500,16 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                         </div>
                      </div>
 
-                     <div className="space-y-4 pt-4 border-t border-slate-100">
-                        <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest ml-1">Planning (Ingepland)</label>
+                     <div className="space-y-4 pt-4 border-t border-[#EAE1D2]">
+                        <label className="text-xs font-medium text-stone-500 ml-1">Planning (Ingepland)</label>
                         <div className="space-y-3">
-                          <div className="flex items-center justify-between bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-600">Oplosbaar op afstand</span>
+                          <div className="flex items-center justify-between bg-[#F4EFE6] p-4 rounded-2xl border border-[#EAE1D2]">
+                            <span className="text-xs font-medium text-slate-600">Oplosbaar op afstand</span>
                             <button 
                               onClick={() => updateRequest(selectedRequest.id, { isRemote: !selectedRequest.isRemote, geplandeDatumRemote: !selectedRequest.isRemote ? selectedRequest.geplandeDatumSite || '' : '', geplandeDatumSite: !selectedRequest.isRemote ? '' : selectedRequest.geplandeDatumRemote || '' })}
-                              className={`w-12 h-6 rounded-full transition-colors relative ${selectedRequest.isRemote ? 'bg-indigo-600' : 'bg-slate-300'}`}
+                              className={`w-12 h-6 rounded-full transition-colors relative ${selectedRequest.isRemote ? 'bg-[#385B69]' : 'bg-[#CAD6DC]'}`}
                             >
-                              <div className={`w-4 h-4 rounded-full bg-white absolute top-1 transition-all ${selectedRequest.isRemote ? 'left-7' : 'left-1'}`} />
+                              <div className={`w-4 h-4 rounded-full bg-[#FDFBF7] absolute top-1 transition-all ${selectedRequest.isRemote ? 'left-7' : 'left-1'}`} />
                             </button>
                           </div>
                           
@@ -524,19 +523,19 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                                 updateRequest(selectedRequest.id, { geplandeDatumSite: e.target.value });
                               }
                             }}
-                            className="w-full p-4 bg-white border-2 border-slate-100 rounded-2xl outline-none font-bold text-sm text-slate-700 focus:border-indigo-500 transition-colors"
+                            className="w-full p-4 bg-[#FDFBF7] border-2 border-[#EAE1D2] rounded-2xl outline-none font-bold text-sm text-slate-700 focus:border-[#385B69] transition-colors"
                           />
                         </div>
                      </div>
 
-                     <div className="p-6 bg-emerald-50 rounded-[2rem] border border-emerald-100">
-                        <h4 className="text-[10px] font-black text-emerald-700 uppercase tracking-widest mb-4 flex items-center gap-2">
+                     <div className="p-6 bg-[#EDF2EF] rounded-2xl border border-[#D4E0D8]">
+                        <h4 className="text-xs font-medium text-[#557560] mb-4 flex items-center gap-2">
                            <MapPin size={12} />
                            Locatie info
                         </h4>
                         <div className="space-y-2">
-                           <p className="text-xs font-black text-emerald-900 uppercase">{selectedRequest.school}</p>
-                           <p className="text-[10px] text-emerald-600 font-bold uppercase tracking-tighter">API: {getAPIChannel(selectedRequest.school).name}</p>
+                           <p className="text-xs font-medium text-[#0F172A]">{selectedRequest.school}</p>
+                           <p className="text-xs text-[#557560] font-bold">API: {getAPIChannel(selectedRequest.school).name}</p>
                         </div>
                      </div>
                   </div>
@@ -548,17 +547,17 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
       </AnimatePresence>
 
       {/* API Preview / Quick Log */}
-       <div className="bg-slate-900 rounded-[2.5rem] p-10 text-white overflow-hidden relative border border-slate-800 shadow-[0_30px_60px_rgba(0,0,0,0.2)]">
-         <div className="absolute top-0 right-0 p-12 opacity-[0.03] rotate-12 -mr-16 -mt-16">
+       <div className="bg-[#F4EFE6] rounded-2xl p-8 border border-[#EAE1D2] overflow-hidden relative shadow-sm">
+         <div className="absolute top-0 right-0 p-12 opacity-[0.03] rotate-12 -mr-16 -mt-16 text-[#0F172A]">
             <Mail size={300} />
          </div>
-         <div className="relative z-10 space-y-8">
+         <div className="relative z-10 space-y-6">
             <div className="flex items-center justify-between">
               <div className="space-y-1">
-                <h3 className="text-2xl font-black tracking-tight uppercase">Data & API Kanalen</h3>
-                <p className="text-slate-400 text-sm font-medium">Automatische triggers via Smartschool & Gmail.</p>
+                <h3 className="text-xl font-medium text-stone-800">Data & API kanalen</h3>
+                <p className="text-stone-500 text-sm">Automatische triggers via Smartschool & Gmail.</p>
               </div>
-              <button className="px-6 py-3 bg-white/5 border border-white/10 text-slate-300 font-black text-[10px] uppercase tracking-widest rounded-xl hover:bg-white/10 hover:text-white transition-colors">Volledig logboek →</button>
+              <button className="px-5 py-2.5 bg-[#FDFBF7] border border-[#EAE1D2] text-stone-600 font-medium text-xs rounded-xl hover:bg-stone-100 transition-colors shadow-sm">Overzicht logboek</button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               {[
@@ -566,16 +565,16 @@ export default function Dashboard({ requests, updateRequest, addRequest, schools
                 { to: 'Smartschool: Matadi', subject: 'Update: ICT-bezoek ingepland', channel: 'Smartschool API', time: '14:22' },
                 { to: 'an.d@deklarebron.be', subject: 'Ticket opgelost: Printertoegang', channel: 'Gmail API', time: 'Gisteren' },
               ].map((mail, i) => (
-                <div key={i} className="bg-white/[0.03] p-4 rounded-2xl border border-white/[0.05] hover:bg-white/[0.05] transition-all group flex flex-col gap-3">
+                <div key={i} className="bg-[#FDFBF7] p-4 rounded-xl border border-[#EAE1D2] shadow-sm flex flex-col gap-3">
                   <div className="flex items-center justify-between">
-                     <div className="w-8 h-8 rounded-lg bg-indigo-600/20 text-indigo-400 flex items-center justify-center">
+                     <div className="w-8 h-8 rounded-lg bg-[#EAF1F4] text-[#385B69] border border-[#CFDCE2] flex items-center justify-center">
                         <MessageSquare size={14} />
                      </div>
-                     <span className="text-[10px] font-mono text-slate-500 uppercase">{mail.time}</span>
+                     <span className="text-xs text-stone-400">{mail.time}</span>
                   </div>
                   <div>
-                    <p className="text-sm font-black tracking-wide truncate">{mail.subject}</p>
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tighter mt-1">{mail.channel} • {mail.to}</p>
+                    <p className="text-sm font-medium text-stone-800 truncate">{mail.subject}</p>
+                    <p className="text-xs text-stone-500 mt-1">{mail.channel} • {mail.to}</p>
                   </div>
                 </div>
               ))}

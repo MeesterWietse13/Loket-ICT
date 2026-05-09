@@ -131,7 +131,7 @@ export default function App() {
   const isTeacherView = activeTab === 'teacher-view';
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] font-sans text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+    <div className="min-h-screen bg-[#F6F5F0] font-sans text-[#0F172A] selection:bg-[#CFDCE2] selection:text-[#2A4652]">
       {!isTeacherView && (
         <Sidebar 
           activeTab={activeTab} 
@@ -142,7 +142,7 @@ export default function App() {
         />
       )}
       
-      <main className={`${!isTeacherView ? 'ml-64' : ''} p-8 min-h-screen bg-[radial-gradient(at_top_left,rgba(59,130,246,0.02),transparent_40%),radial-gradient(at_bottom_right,rgba(16,185,129,0.02),transparent_40%)]`}>
+      <main className={`${!isTeacherView ? 'ml-64' : ''} p-8 min-h-screen`}>
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
